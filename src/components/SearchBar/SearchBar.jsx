@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import css from 'components/SearchBar/SearchBar.module.css';
 
 export class Searchbar extends Component {
@@ -15,8 +17,21 @@ export class Searchbar extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     const query = this.state.inputValue.trim();
-    const decodeQuery = decodeURIComponent(query.replace(' ', '+'));
-    this.props.onSubmit(decodeQuery);
+
+    if (query === '') {
+      toast.error('Query can not be empty!', {
+        position: 'top-right',
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+
+    this.props.onSubmit(query.toLowerCase());
     this.setState({ inputValue: '' });
   };
 
