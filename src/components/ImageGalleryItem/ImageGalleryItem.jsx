@@ -1,10 +1,15 @@
 import css from 'components/ImageGalleryItem/ImageGalleryItem.module.css';
 
 export const ImageGalleryItem = ({ item }) => {
-  const baseSrc = item.webformatURL;
+  const { webformatURL, largeImageURL } = item;
   return (
     <li className={css.ImageGalleryItem}>
-      <img src={baseSrc} alt="img" className={css.ImageGalleryItem_image} />
+      <img
+        src={webformatURL}
+        alt="img"
+        className={css.ImageGalleryItem_image}
+        data-url={largeImageURL}
+      />
     </li>
   );
 };
