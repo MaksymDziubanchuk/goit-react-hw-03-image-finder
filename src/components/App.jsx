@@ -60,13 +60,11 @@ export class App extends Component {
     this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
 
-  handleGalleryClick = e => {
-    if (e.target.tagName === 'IMG') {
-      this.setState({
-        modalUrl: e.target.dataset.url,
-        showModal: true,
-      });
-    }
+  handleImgClick = url => {
+    this.setState({
+      modalUrl: url,
+      showModal: true,
+    });
   };
 
   render() {
@@ -133,7 +131,7 @@ export class App extends Component {
           <Searchbar onSubmit={this.handleFormSubmit} />
           <ImageGallery
             items={this.state.items}
-            onClick={this.handleGalleryClick}
+            onClick={this.handleImgClick}
           />
           {this.state.buttonVisible && (
             <Button onClick={this.handleButtonClick} />

@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import css from 'components/ImageGalleryItem/ImageGalleryItem.module.css';
 
-export const ImageGalleryItem = ({ item }) => {
+export const ImageGalleryItem = ({ item, onClick }) => {
   const { webformatURL, largeImageURL } = item;
   return (
     <li className={css.ImageGalleryItem}>
@@ -8,8 +9,19 @@ export const ImageGalleryItem = ({ item }) => {
         src={webformatURL}
         alt="img"
         className={css.ImageGalleryItem_image}
-        data-url={largeImageURL}
+        onClick={() => {
+          onClick(largeImageURL);
+        }}
       />
     </li>
   );
+};
+
+ImageGalleryItem.propTypes = {
+  item: PropTypes.exact({
+    id: PropTypes.number.isRequired,
+    webformatURL: PropTypes.string.isRequired,
+    largeImageURL: PropTypes.string.isRequired,
+  }),
+  onClick: PropTypes.func.isRequired,
 };

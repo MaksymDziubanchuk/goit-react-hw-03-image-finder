@@ -4,9 +4,9 @@ import css from 'components/ImageGalery/ImageGallery.module.css';
 
 export const ImageGallery = ({ items, onClick }) => {
   return (
-    <ul className={css.ImageGallery} onClick={onClick}>
+    <ul className={css.ImageGallery}>
       {items.map(item => (
-        <ImageGalleryItem item={item} key={item.id} />
+        <ImageGalleryItem item={item} key={item.id} onClick={onClick} />
       ))}
     </ul>
   );
@@ -20,4 +20,5 @@ ImageGallery.propTypes = {
       largeImageURL: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onClick: PropTypes.func.isRequired,
 };

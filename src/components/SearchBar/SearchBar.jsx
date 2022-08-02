@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import css from 'components/SearchBar/SearchBar.module.css';
@@ -6,6 +7,10 @@ import css from 'components/SearchBar/SearchBar.module.css';
 export class Searchbar extends Component {
   state = {
     inputValue: '',
+  };
+
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
   };
 
   handleInputChange = e => {
